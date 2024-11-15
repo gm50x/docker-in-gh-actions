@@ -25,4 +25,4 @@ jobs:
       - name: Show Containers
         run: docker ps
       - name: Communicate with Container
-        run: curl http://localhost:8080
+        run: curl http://nginx:8080
