@@ -1,0 +1,28 @@
+name: Docker Containers on GithubActions
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CI: true
+
+jobs:
+  Run:
+    name: 'Run Sample test'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.9'
+      - name: Start Docker Containers
+        run: docker compose up -d
+      - name: Show Containers
+        run: docker ps
+      - name: Communicate with Container
+        run: curl http://localhost:8080
